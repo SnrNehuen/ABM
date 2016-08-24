@@ -87,7 +87,7 @@ class Alumno
 		$consulta =$objetoAccesoDato->RetornarConsulta("select * from alumnos where id =:id");
 		$consulta->bindValue(':id', $idParametro, PDO::PARAM_INT);
 		$consulta->execute();
-		$alumnoBuscada= $consulta->fetchObject('alumno');
+		$alumnoBuscado= $consulta->fetchObject('alumno');
 		return $alumnoBuscado;	
 					
 	}
@@ -97,7 +97,7 @@ class Alumno
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("select * from alumnos");
 		$consulta->execute();			
-		$arralumnos= $consulta->fetchAll(PDO::FETCH_CLASS, "alumno");	
+		$arrAlumnos= $consulta->fetchAll(PDO::FETCH_CLASS, "alumno");	
 		return $arrAlumnos;
 	}
 	

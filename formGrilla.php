@@ -21,7 +21,7 @@
 		$mensaje = "Bienvenido .";
 		if(isset($_POST['dniParaBorrar']))
 		{
-			$resultado = Persona::Borrar($_POST['dniParaBorrar']);
+			$resultado = Alumno::Borrar($_POST['dniParaBorrar']);
 			$mensaje = "SE HA BORRADO EXITOSAMENTE!!!";
 		}
 	?>	

@@ -28,6 +28,7 @@
 	{
 		$unAlumno = Alumno::TraerUnAlumno($_POST['dniParaModificar']);
 		$titulo = "MODIFICACIÓN";
+		//echo "$unAlumno";
 	} 
 ?>
 	<div class="container">
@@ -156,7 +157,7 @@ if(isset($_POST['agregar']) && $_POST['agregar'] === "Guardar")// si esto no se 
 		$p->SetApellido($_POST['apellido']);
 		$p->SetNombre($_POST['nombre']);
 		$p->SetDni($_POST['dni']);
-		persona::Insertar($p);
+		Alumno::Insertar($p);
 
 	}	
 }
