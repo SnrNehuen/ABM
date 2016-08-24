@@ -21,12 +21,12 @@
 
 	 ?>
 <?php     
-	require_once("clases\Personas.php");
+	require_once("clases\Alumnos.php");
 
 	$titulo = "ALTA";
 	if(isset($_POST['dniParaModificar'])) //viene de la grilla
 	{
-		$unaPersona = Persona::TraerUnaPersona($_POST['dniParaModificar']);
+		$unAlumno = Alumno::TraerUnAlumno($_POST['dniParaModificar']);
 		$titulo = "MODIFICACIÓN";
 	} 
 ?>
@@ -38,15 +38,15 @@
 			<h1> <?php echo $titulo; ?> </h1>
 
 			<form id="FormIngreso" method="post" action="formAlta.php" enctype="multipart/form-data" >
-				<input type="text" name="apellido" id="apellido" placeholder="ingrese apellido" value="<?php echo isset($unaPersona) ?  $unaPersona->GetApellido() : "" ; ?>" /><span id="lblApellido" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*</span>
-				<input type="text" name="nombre" id="nombre" placeholder="ingrese nombre" value="<?php echo isset($unaPersona) ?  $unaPersona->GetNombre() : "" ; ?>" /> <span id="lblNombre" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*</span>
-				<input type="text" name="dni" id="dni" placeholder="ingrese dni" value="<?php echo isset($unaPersona) ?  $unaPersona->GetDni() : "" ; ?>" <?php echo isset($unaPersona) ?  "readonly": "" ; ?>        /> <span id="lblDni" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*</span>
-				<?php echo isset($unaPersona) ? 	"<p style='color: black;'>*El DNI no se puede modificar.</p> ": "" ; ?>
-				<input type="hidden" name="idOculto" value="<?php echo isset($unaPersona) ? $unaPersona->GetId() : "" ; ?>" />
+				<input type="text" name="apellido" id="apellido" placeholder="ingrese apellido" value="<?php echo isset($unAlumno) ?  $unAlumno->GetApellido() : "" ; ?>" /><span id="lblApellido" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*</span>
+				<input type="text" name="nombre" id="nombre" placeholder="ingrese nombre" value="<?php echo isset($unAlumno) ?  $unAlumno->GetNombre() : "" ; ?>" /> <span id="lblNombre" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*</span>
+				<input type="text" name="dni" id="dni" placeholder="ingrese dni" value="<?php echo isset($unAlumno) ?  $unAlumno->GetDni() : "" ; ?>" <?php echo isset($unAlumno) ?  "readonly": "" ; ?>        /> <span id="lblDni" style="display:none;color:#FF0000;width:1%;float:right;font-size:80">*</span>
+				<?php echo isset($unAlumno) ? 	"<p style='color: black;'>*El DNI no se puede modificar.</p> ": "" ; ?>
+				<input type="hidden" name="idOculto" value="<?php echo isset($unAlumno) ? $unAlumno->GetId() : "" ; ?>" />
 				<input type="file" name="foto" />
 
 
-				<img  src="fotos/<?php echo isset($unaPersona) ? $unaPersona->GetFoto() : "pordefecto.png" ; ?>" class="fotoform"/>
+				<img  src="fotos/<?php echo isset($unAlumno) ? $unAlumno->GetFoto() : "pordefecto.png" ; ?>" class="fotoform"/>
 				<p style="  color: black;">*La foto se actualiza al guardar.</p>
 
 
@@ -66,8 +66,8 @@ if(isset($_POST['agregar']) && $_POST['agregar'] === "Guardar")// si esto no se 
 
 	if($_POST['idOculto'] != "")//Solo para la foto
 	{
-		$unaPersona = Persona::TraerUnaPersona($_POST['idOculto']);
-		$foto=$unaPersona->GetFoto();
+		$unAlumno = Alumno::TraerUnAlumno($_POST['idOculto']);
+		$foto=$unAlumno->GetFoto();
 		
 	}else
 	{
@@ -142,16 +142,16 @@ if(isset($_POST['agregar']) && $_POST['agregar'] === "Guardar")// si esto no se 
 
 	if($_POST['idOculto'] != "")//paso por grilla y luego guardo
 	{
-		$unaPersona = Persona::TraerUnaPersona($_POST['idOculto']);
-		$unaPersona->SetFoto($foto);
-		$unaPersona->SetApellido($_POST['apellido']);
-		$unaPersona->SetNombre($_POST['nombre']);
-		//$unaPersona->SetDni($_POST['dni']);		
-		$retorno = Persona::Modificar($unaPersona);
+		$unAlumno = Alumno::TraerUnAlumno($_POST['idOculto']);
+		$unAlumno->SetFoto($foto);
+		$unAlumno->SetApellido($_POST['apellido']);
+		$unAlumno->SetNombre($_POST['nombre']);
+		//$unAlumno->SetDni($_POST['dni']);		
+		$retorno = Alumno::Modificar($unAlumno);
 	}
 	else// si es un alta
 	{
-		$p = new Persona();	
+		$p = new Alumno();	
 		$p->SetFoto($foto);
 		$p->SetApellido($_POST['apellido']);
 		$p->SetNombre($_POST['nombre']);
