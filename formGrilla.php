@@ -1,5 +1,5 @@
 <?php
-	require_once('clases/Personas.php');
+	require_once('clases/Alumnos.php');
 ?>
 <html>
 <head>

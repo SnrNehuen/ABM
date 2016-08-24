@@ -92,7 +92,7 @@ class Alumno
 					
 	}
 	
-	public static function TraerTodosAlumnos()
+	public static function TraerTodosLosAlumnos()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("select * from alumnos");
